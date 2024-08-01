@@ -9,28 +9,51 @@ const DropdownContainer = styled.div`
   display: inline-block;
 `;
 
-const MainMenu = styled(Menu)``;
+const StyledH4 = styled.h4`
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px; /* Adjust this value as needed */
+  display: inline-block;
+  vertical-align: middle;
+`;
 
-const StyledMenu = styled(Menu.SubMenu)`
-  width: 250px !important;
-  .ant-menu-sub {
-    width: 300px !important; /* Ensure the width is applied */
+const MenuTitle = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const CustomArrow = styled.span`
+  margin-left: 10px;
+  &::before {
+    content: "▼"; /* You can replace this with any custom arrow */
+    font-size: 12px;
   }
 `;
 
 const MultiLevelDropdown = ({ categories }) => {
   const generateMenu = (categories) => (
-    <MainMenu>
+    <Menu>
       {categories.map((category) => (
-        <StyledMenu key={category.name} title={category.name}>
+        <Menu.SubMenu
+          style={{ width: "250px", height: "40px" }}
+          key={category.name}
+          title={category.name}
+        >
           {category.subCategories.map((subCategory) => (
-            <div style={{ width: "300px", margin: 0, height: "20px" }}>
-              <Menu.Item key={subCategory}>{subCategory}</Menu.Item>
-            </div>
+            <Menu.Item
+              style={{ width: "250px", borderRadius: 0 }}
+              key={subCategory}
+            >
+              <MenuTitle>
+                <StyledH4>{subCategory}</StyledH4>
+              </MenuTitle>
+            </Menu.Item>
           ))}
-        </StyledMenu>
+        </Menu.SubMenu>
       ))}
-    </MainMenu>
+    </Menu>
   );
 
   return (
