@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 
 const DropdownContainer = styled.div`
@@ -15,7 +15,7 @@ const StyledLink = styled.a`
 const Menu = styled.div`
   display: ${(props) => (props.show ? "block" : "none")};
   position: absolute;
-  top: 100%;
+  top: 60px;
   left: 0;
   background-color: #fff;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -76,13 +76,29 @@ const Arrow = styled.span`
 const MultiLevelDropdown = ({ categories }) => {
   const [showMenu, setShowMenu] = useState(false);
 
+  const timerRef = useRef(null);
+
+  const handleMove = () => {
+    timerRef.current = setTimeout(() => {
+      setShowMenu(false);
+    }, 300);
+  };
+
+  const handleEnter = () => {
+    clearTimeout(timerRef.current);
+    setShowMenu(true);
+  };
   return (
     <DropdownContainer
-      onMouseEnter={() => setShowMenu(true)}
-      onMouseLeave={() => setShowMenu(false)}
+      onMouseEnter={() => handleEnter()}
+      onMouseLeave={() => handleMove()}
     >
       <StyledLink>Products</StyledLink>
-      <Menu show={showMenu}>
+      <Menu
+        onMouseEnter={() => handleEnter()}
+        onMouseLeave={() => handleMove()}
+        show={showMenu}
+      >
         {categories.map((category) => (
           <SubMenu key={category.name}>
             <SubMenuTitle>
