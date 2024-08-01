@@ -32,9 +32,19 @@ const CustomArrow = styled.span`
   }
 `;
 
+const ZoomMenuItem = styled(Menu.Item)`
+  width: 250px;
+  border-radius: 0;
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.1) translateX(10px); /* Adjust the scale and translateX values as needed */
+  }
+`;
+
 const MultiLevelDropdown = ({ categories }) => {
   const generateMenu = (categories) => (
-    <Menu>
+    <Menu style={{ marginTop: "33px" }}>
       {categories.map((category) => (
         <Menu.SubMenu
           style={{ width: "250px", height: "40px" }}
@@ -42,14 +52,11 @@ const MultiLevelDropdown = ({ categories }) => {
           title={category.name}
         >
           {category.subCategories.map((subCategory) => (
-            <Menu.Item
-              style={{ width: "250px", borderRadius: 0 }}
-              key={subCategory}
-            >
+            <ZoomMenuItem key={subCategory}>
               <MenuTitle>
                 <StyledH4>{subCategory}</StyledH4>
               </MenuTitle>
-            </Menu.Item>
+            </ZoomMenuItem>
           ))}
         </Menu.SubMenu>
       ))}
