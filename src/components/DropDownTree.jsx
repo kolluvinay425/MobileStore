@@ -24,7 +24,7 @@ const MultiLevelDropdown = ({ categories }) => {
       {categories.map((category) => (
         <StyledMenu key={category.name} title={category.name}>
           {category.subCategories.map((subCategory) => (
-            <div style={{ width: "300px", margin: 0, height: "30px" }}>
+            <div style={{ width: "300px", margin: 0, height: "20px" }}>
               <Menu.Item key={subCategory}>{subCategory}</Menu.Item>
             </div>
           ))}
