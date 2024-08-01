@@ -1,73 +1,102 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { Menu, Dropdown } from "antd";
-import "antd/dist/reset.css";
-import { StyledLink } from "./styles/NavBarStyles";
 
 const DropdownContainer = styled.div`
   position: relative;
   display: inline-block;
 `;
 
-const StyledH4 = styled.h4`
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 200px; /* Adjust this value as needed */
-  display: inline-block;
-  vertical-align: middle;
+const StyledLink = styled.a`
+  cursor: pointer;
+  text-decoration: none;
+  color: #000;
 `;
 
-const MenuTitle = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+const Menu = styled.div`
+  display: ${(props) => (props.show ? "block" : "none")};
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
 `;
 
-const CustomArrow = styled.span`
-  margin-left: 10px;
-  &::before {
-    content: "▼"; /* You can replace this with any custom arrow */
-    font-size: 12px;
-  }
-`;
-
-const ZoomMenuItem = styled(Menu.Item)`
+const MenuItem = styled.div`
+  padding: 12px 16px;
   width: 250px;
-  border-radius: 0;
-  transition: transform 0.2s ease-in-out;
-
+  cursor: pointer;
+  transition: background-color 0.1s ease-in-out, font-weight 0.1s ease-in-out;
   &:hover {
-    transform: scale(1.1) translateX(10px); /* Adjust the scale and translateX values as needed */
+    background-color: #f1f1f1;
+    font-weight: 600; /* Slightly bolder font weight on hover */
+    color: #27ace1;
   }
+`;
+
+const SubMenuTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 12px 16px;
+  width: 250px;
+  transition: background-color 0.1s ease-in-out, font-weight 0.2s ease-in-out;
+  &:hover {
+    background-color: #f1f1f1;
+    font-weight: 600; /* Slightly bolder font weight on hover */
+    color: #27ace1;
+  }
+`;
+
+const SubMenu = styled.div`
+  position: relative;
+  &:hover > div {
+    display: block;
+  }
+  &:hover > ${SubMenuTitle} {
+    background-color: #f1f1f1;
+  }
+`;
+
+const SubMenuContent = styled.div`
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  background-color: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+`;
+
+const Arrow = styled.span`
+  margin-left: auto;
 `;
 
 const MultiLevelDropdown = ({ categories }) => {
-  const generateMenu = (categories) => (
-    <Menu style={{ marginTop: "33px" }}>
-      {categories.map((category) => (
-        <Menu.SubMenu
-          style={{ width: "250px", height: "40px" }}
-          key={category.name}
-          title={category.name}
-        >
-          {category.subCategories.map((subCategory) => (
-            <ZoomMenuItem key={subCategory}>
-              <MenuTitle>
-                <StyledH4>{subCategory}</StyledH4>
-              </MenuTitle>
-            </ZoomMenuItem>
-          ))}
-        </Menu.SubMenu>
-      ))}
-    </Menu>
-  );
+  const [showMenu, setShowMenu] = useState(false);
 
   return (
-    <DropdownContainer>
-      <Dropdown overlay={generateMenu(categories)} overlayStyle={{}}>
-        <StyledLink>Products</StyledLink>
-      </Dropdown>
+    <DropdownContainer
+      onMouseEnter={() => setShowMenu(true)}
+      onMouseLeave={() => setShowMenu(false)}
+    >
+      <StyledLink>Products</StyledLink>
+      <Menu show={showMenu}>
+        {categories.map((category) => (
+          <SubMenu key={category.name}>
+            <SubMenuTitle>
+              {category.name}
+              {/* <Arrow>{">"}</Arrow> */}
+            </SubMenuTitle>
+            <SubMenuContent>
+              {category.subCategories.map((subCategory) => (
+                <MenuItem key={subCategory}>{subCategory}</MenuItem>
+              ))}
+            </SubMenuContent>
+          </SubMenu>
+        ))}
+      </Menu>
     </DropdownContainer>
   );
 };
