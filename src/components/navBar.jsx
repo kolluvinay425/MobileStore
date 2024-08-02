@@ -1,16 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import MultiLevelDropdown from "./DropDownTree";
 import styled from "styled-components";
-import {
-  NavList,
-  Nav,
-  NavImage,
-  SearchBar,
-  StyledLink,
-  NavBarWrapper,
-  NavFirstRow,
-  NavSecondRow,
-} from "./styles/NavBarStyles";
+import { NavList, Nav, NavImage, StyledLink } from "./styles/NavBarStyles";
 import { productCategories } from "../static/helper";
 import { Link } from "react-router-dom";
 
@@ -19,27 +10,19 @@ const NavbarContainer = styled.div`
   width: 100%;
   top: 0;
   z-index: 1000;
-  transition: top 0.3s;
 `;
 
 const FirstRow = styled.div`
-  /* background-color: #333; */
   color: white;
-  /* padding: 10px; */
-  display: ${(props) => (props.isCollapsed ? "none" : "block")};
+  transition: transform 0.3s ease-in-out;
+  transform: ${(props) =>
+    props.isCollapsed ? "translateY(-100%)" : "translateY(0)"};
 `;
 
 const SecondRow = styled.div`
-  /* background-color: #555; */
-  color: white;
-  /* padding: 10px; */
-`;
-
-const Spacer = styled.div`
-  height: ${(props) =>
-    props.isCollapsed
-      ? "40px"
-      : "120px"}; /* Adjust based on the height of your navbar rows */
+  transition: transform 0.3s ease-in-out;
+  transform: ${(props) =>
+    props.isCollapsed ? "translateY(-100%)" : "translateY(0)"};
 `;
 
 const NavBar = () => {
@@ -79,17 +62,16 @@ const NavBar = () => {
 
   return (
     <>
-      <NavbarContainer>
+      <NavbarContainer ref={navRef}>
         <FirstRow isCollapsed={isCollapsed}>
-          <Nav ref={navRef}>
+          <Nav>
             <NavList>
               <StyledLink to="/">Home</StyledLink>
               <MultiLevelDropdown categories={productCategories} />
-              {/* <SearchBar type="text" placeholder="Search for anything." /> */}
               <StyledLink to="/something">Categories</StyledLink>
               <StyledLink to="/about">About</StyledLink>
               <StyledLink to="/something">Categories</StyledLink>
-              <StyledLink to="/about">About</StyledLink>{" "}
+              <StyledLink to="/about">About</StyledLink>
               <StyledLink to="/something">Categories</StyledLink>
               <StyledLink to="/about">About</StyledLink>
             </NavList>
@@ -102,16 +84,15 @@ const NavBar = () => {
           </Nav>
         </FirstRow>
 
-        <SecondRow>
-          <Nav ref={navRef}>
+        <SecondRow isCollapsed={isCollapsed}>
+          <Nav>
             <NavList>
               <StyledLink to="/">Home</StyledLink>
               <MultiLevelDropdown categories={productCategories} />
-              {/* <SearchBar type="text" placeholder="Search for anything." /> */}
               <StyledLink to="/something">Categories</StyledLink>
               <StyledLink to="/about">About</StyledLink>
               <StyledLink to="/something">Categories</StyledLink>
-              <StyledLink to="/about">About</StyledLink>{" "}
+              <StyledLink to="/about">About</StyledLink>
               <StyledLink to="/something">Categories</StyledLink>
               <StyledLink to="/about">About</StyledLink>
             </NavList>
@@ -123,7 +104,6 @@ const NavBar = () => {
             </Link>
           </Nav>
         </SecondRow>
-        {/* <Spacer isCollapsed={isCollapsed} /> */}
       </NavbarContainer>
     </>
   );
