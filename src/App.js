@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <Router>
-        <div>
+        <div style={{ padding: 0 }}>
           <NavBar />
           <Routes>
             <Route path="/" element={<Home />} />
