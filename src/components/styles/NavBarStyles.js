@@ -3,17 +3,18 @@ import { Link } from "react-router-dom";
 
 const Nav = styled.nav`
   background: #fff;
-  padding: 20px 0px 20px 0px;
+  padding-top: 20px;
   box-shadow: 0px 2px 5px -2px rgba(94, 89, 94, 1);
   position: fixed;
   top: 0;
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   z-index: 1000;
 
   @media (max-width: 890px) {
     padding: 0px;
+    justify-content: flex-end;
   }
 `;
 
@@ -39,14 +40,15 @@ const NavList = styled.div`
 `;
 
 const StyledLink = styled(Link)`
-  font-size: 0.9rem;
-  max-width: 100%;
+  /* font-size: 0.9rem; */
+  cursor: pointer;
   color: #2d2f31;
   text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 500;
 
   &:hover {
-    background: #444;
-    border-radius: 5px;
+    color: #27ace1;
   }
 
   @media (max-width: 890px) {
@@ -55,28 +57,23 @@ const StyledLink = styled(Link)`
 `;
 
 const NavImage = styled.img`
-  max-width: 100%;
-  width: 4%;
-  height: auto;
+  width: 50px;
+  height: 50px;
   border-radius: 50px;
 
   @media (max-width: 1200px) {
-    width: 5%;
     padding: 10px;
   }
 
   @media (max-width: 890px) {
-    width: 5%;
     padding: 10px;
   }
 
   @media (max-width: 600px) {
-    width: 5%;
     padding: 10px;
   }
 
   @media (max-width: 400px) {
-    width: 25%;
     padding: 10px;
   }
 `;

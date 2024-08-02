@@ -8,8 +8,18 @@ const DropdownContainer = styled.div`
 
 const StyledLink = styled.a`
   cursor: pointer;
+  color: #2d2f31;
   text-decoration: none;
-  color: #000;
+  text-transform: uppercase;
+  font-weight: 500;
+
+  &:hover {
+    color: #27ace1;
+  }
+
+  @media (max-width: 890px) {
+    display: none;
+  }
 `;
 
 const Menu = styled.div`
