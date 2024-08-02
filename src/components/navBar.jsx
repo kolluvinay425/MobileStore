@@ -25,6 +25,11 @@ const SecondRow = styled.div`
     props.isCollapsed ? "translateY(-100%)" : "translateY(0)"};
 `;
 
+const Content = styled.div`
+  margin-top: 100px;
+  padding: 20px;
+`;
+
 const NavBar = () => {
   const navRef = useRef(null);
 
@@ -105,6 +110,25 @@ const NavBar = () => {
           </Nav>
         </SecondRow>
       </NavbarContainer>
+      {/* <Content>
+        <p>Scroll down to see Navbar 2 become sticky.</p>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+        <p>
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+          nisi ut aliquip ex ea commodo consequat.
+        </p>
+        <p>
+          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+          dolore eu fugiat nulla pariatur.
+        </p>
+        <p>
+          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+          officia deserunt mollit anim id est laborum.
+        </p>
+      </Content> */}
     </>
   );
 };
