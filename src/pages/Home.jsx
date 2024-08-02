@@ -7,8 +7,6 @@ function Home() {
       <HomeCarousal />
       <HomeCarousal />
       <HomeCarousal />
-
-      {/* <LoginPage /> */}
     </>
   );
 }

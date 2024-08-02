@@ -4,13 +4,12 @@ import { Link } from "react-router-dom";
 const NavSecondRow = styled.div`
   width: 100%;
   height: 50px; /* Fixed height */
-
   display: flex;
   align-items: center;
   justify-content: center;
-  position: ${(props) => (props.isScrolled ? "fixed" : "absolute")};
-  top: 0;
-  transition: position 0.3s ease;
+  position: ${(props) => (props.isScrolled ? "fixed" : "relative")};
+  top: ${(props) => (props.isScrolled ? "0" : "50px")};
+  transition: position 0.3s ease, top 0.3s ease;
   z-index: 2;
 `;
 
@@ -23,6 +22,7 @@ const NavFirstRow = styled.div`
   position: relative;
   z-index: 1;
 `;
+
 const NavBarWrapper = styled.div`
   width: 100%;
   position: relative;
@@ -30,13 +30,12 @@ const NavBarWrapper = styled.div`
 
 const Nav = styled.nav`
   background: #fff;
-  padding-top: 20px;
   box-shadow: 0px 2px 5px -2px rgba(94, 89, 94, 1);
   width: 100%;
   display: flex;
   justify-content: space-evenly;
   z-index: 1000;
-
+  padding: 10px;
   @media (max-width: 890px) {
     padding: 0px;
     justify-content: flex-end;
