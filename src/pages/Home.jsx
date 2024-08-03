@@ -5,8 +5,6 @@ function Home() {
   return (
     <>
       <HomeCarousal />
-      <HomeCarousal />
-      <HomeCarousal />
     </>
   );
 }

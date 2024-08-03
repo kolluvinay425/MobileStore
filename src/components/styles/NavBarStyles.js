@@ -1,39 +1,12 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const NavSecondRow = styled.div`
-  width: 100%;
-  height: 50px; /* Fixed height */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: ${(props) => (props.isScrolled ? "fixed" : "relative")};
-  top: ${(props) => (props.isScrolled ? "0" : "50px")};
-  transition: position 0.3s ease, top 0.3s ease;
-  z-index: 2;
-`;
-
-const NavFirstRow = styled.div`
-  width: 100%;
-  height: 50px; /* Fixed height */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  z-index: 1;
-`;
-
-const NavBarWrapper = styled.div`
-  width: 100%;
-  position: relative;
-`;
-
 const Nav = styled.nav`
   background: #fff;
   box-shadow: 0px 2px 5px -2px rgba(94, 89, 94, 1);
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: ${(props) => (props.center ? "center" : "space-evenly")};
   z-index: 1000;
   padding: 10px;
   @media (max-width: 890px) {
@@ -81,8 +54,8 @@ const StyledLink = styled(Link)`
 `;
 
 const NavImage = styled.img`
-  width: 50px;
-  height: 50px;
+  width: ${(props) => (props.banner ? "350px" : "50px")};
+  height: ${(props) => (props.banner ? "100px" : "50px")};
   border-radius: 50px;
 
   @media (max-width: 1200px) {
@@ -109,7 +82,7 @@ const SearchBar = styled.input`
   padding: 15px 15px;
   font-size: 14px;
   outline: none;
-  max-width: 50%;
+  max-width: 80%;
   width: 40%;
 
   @media (max-width: 890px) {
@@ -117,34 +90,59 @@ const SearchBar = styled.input`
   }
 `;
 
-const DropDownContainer = styled.div`
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
+const Navbar1 = styled.div`
+  color: white;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1;
+  height: 150px;
+  transition: transform 0.3s; /* Faster transition using transform */
+  transform: ${(props) =>
+    props.isSticky ? "translateY(-150px)" : "translateY(0)"};
+
+  @media (max-width: 768px) {
+    height: 100px;
+    transform: ${(props) =>
+      props.isSticky ? "translateY(-100px)" : "translateY(0)"};
+  }
+
+  @media (max-width: 480px) {
+    height: 80px;
+    transform: ${(props) =>
+      props.isSticky ? "translateY(-80px)" : "translateY(0)"};
+  }
 `;
 
-const DropDownMenuWrapper = styled.div`
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: white;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  min-width: 200px;
-  border-radius: 4px;
-  display: ${(props) => (props.isVisible ? "block" : "none")};
-  z-index: 1001;
-`;
+const Navbar2 = styled.div`
+  color: white;
+  position: fixed;
+  width: 100%;
+  top: 120px; /* Adjusted to match Navbar1 height */
+  z-index: 2;
+  transition: transform 0.1s; /* Faster transition using transform */
+  transform: ${(props) =>
+    props.isSticky ? "translateY(-130px)" : "translateY(0)"};
 
+  @media (max-width: 768px) {
+    top: 100px; /* Adjusted to match Navbar1 height for smaller screens */
+    transform: ${(props) =>
+      props.isSticky ? "translateY(-100px)" : "translateY(0)"};
+  }
+
+  @media (max-width: 480px) {
+    top: 80px; /* Adjusted to match Navbar1 height for even smaller screens */
+    transform: ${(props) =>
+      props.isSticky ? "translateY(-80px)" : "translateY(0)"};
+  }
+`;
 export {
-  DropDownContainer,
   SearchBar,
   Nav,
   NavContainer,
   NavList,
   NavImage,
   StyledLink,
-  DropDownMenuWrapper,
-  NavSecondRow,
-  NavFirstRow,
-  NavBarWrapper,
+  Navbar1,
+  Navbar2,
 };
