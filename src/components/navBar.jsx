@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
+import { FaUser, FaUserPlus } from "react-icons/fa";
 import MultiLevelDropdown from "./DropDownTree";
-import styled from "styled-components";
 import {
   NavList,
   Nav,
@@ -9,9 +9,11 @@ import {
   SearchBar,
   Navbar1,
   Navbar2,
+  SearchBarButton,
 } from "./styles/NavBarStyles";
 import { productCategories } from "../static/helper";
 import { Link } from "react-router-dom";
+import { Button } from "antd";
 
 const NavBar = () => {
   const navRef = useRef(null);
@@ -19,7 +21,7 @@ const NavBar = () => {
   const [isSticky, setIsSticky] = useState(false);
 
   const handleScroll = () => {
-    if (window.scrollY > 100) {
+    if (window.scrollY > 100 && window.innerWidth > 768) {
       setIsSticky(true);
     } else {
       setIsSticky(false);
@@ -37,7 +39,8 @@ const NavBar = () => {
     const updateBodyPadding = () => {
       if (navRef.current) {
         const navHeight = navRef.current.clientHeight;
-        document.body.style.paddingTop = `${navHeight + 100}px`;
+        document.body.style.paddingTop =
+          window.innerWidth > 768 ? `${navHeight + 100}px` : `${navHeight}px`;
       }
     };
 
@@ -48,26 +51,42 @@ const NavBar = () => {
 
   return (
     <>
-      <Navbar1 isSticky={isSticky}>
-        <Nav center={true}>
-          <NavList>
-            <Link to="/">
+      <Navbar1 className="navbar1" isSticky={isSticky}>
+        <Nav className="nav1" center={true}>
+          <NavList navOne={true}>
+            <StyledLink to="/">
               <NavImage
                 banner={true}
-                src="https://i.pinimg.com/originals/86/f6/c9/86f6c984946298238d80f7771cf7445d.png"
+                src="https://mikrofin.com/images/2022/12/22/mobishop.png"
                 alt="Your Image"
               />
-            </Link>
-            <SearchBar placeholder="Search for Products"></SearchBar>
-            <StyledLink to="/about">About</StyledLink>
+            </StyledLink>
+            <div className="search-container">
+              <SearchBar placeholder="Search for Products" />
+              <SearchBarButton>Q</SearchBarButton>
+            </div>
+
+            <div className="navIconWrapper">
+              <StyledLink to="/login">
+                <FaUser style={{ marginRight: "5px" }} />
+                Login
+              </StyledLink>
+              <StyledLink to="/register">
+                <FaUserPlus style={{ marginRight: "5px" }} />
+                Register
+              </StyledLink>
+            </div>
           </NavList>
         </Nav>
       </Navbar1>
 
-      <Navbar2 ref={navRef} isSticky={isSticky}>
+      <Navbar2 class="navbar2" ref={navRef} isSticky={isSticky}>
         <Nav>
           <NavList>
             <StyledLink to="/">Home</StyledLink>
+            <MultiLevelDropdown categories={productCategories} />
+            <StyledLink to="/something">Categories</StyledLink>
+            <StyledLink to="/about">About</StyledLink>
             <MultiLevelDropdown categories={productCategories} />
             <StyledLink to="/something">Categories</StyledLink>
             <StyledLink to="/about">About</StyledLink>
