@@ -28,6 +28,7 @@ const Menu = styled.div`
   top: 60px;
   left: 0;
   background-color: #fff;
+  color: #2d2f31;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   z-index: 1;
 `;

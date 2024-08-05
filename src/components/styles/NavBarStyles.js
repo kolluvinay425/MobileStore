@@ -13,8 +13,8 @@ const Nav = styled.nav`
   padding-left: 0;
 
   @media (max-width: 600px) {
-    height: 150px;
-    display: ${(props) => (props.center ? "column" : "none")};
+    justify-content: flex-start;
+    padding-right: 0;
   }
 `;
 
@@ -34,6 +34,23 @@ const NavList = styled.div`
   gap: 22px;
   align-items: center;
 
+  @media (max-width: 600px) {
+    flex-direction: column;
+    /* margin: 0 auto; */
+    padding: 20px;
+    /* background-color: green; */
+    align-items: flex-start;
+
+    .collapsibleLink {
+      margin: 10px;
+      float: left;
+      color: #333;
+      /* background-color: #333; */
+    }
+
+    /* } */
+  }
+
   .navIconWrapper {
     display: contents;
   }
@@ -42,8 +59,16 @@ const NavList = styled.div`
     justify-content: center;
   }
 
+  @media (max-width: 1200px) {
+    .search-container {
+      display: inline-flex;
+    }
+  }
   @media (max-width: 600px) {
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* margin-right: auto; */
     gap: 10px;
     .search-container {
       order: 3;
@@ -55,20 +80,6 @@ const NavList = styled.div`
   }
 `;
 
-// const SearchBar = styled.input`
-//   border: 2px solid #ddd;
-//   border-width: 2px 1px 1px 1px;
-//   padding: 15px;
-//   font-size: 14px;
-//   outline: none;
-//   width: 400px;
-
-//   @media (max-width: 600px) {
-//     padding: 10px;
-//     width: 300px;
-//     height: 50px;
-//   }
-// `;
 const SearchBar = styled.input`
   border: 2px solid #ddd;
   border-width: 2px 1px 1px 1px;
@@ -82,6 +93,9 @@ const SearchBar = styled.input`
     width: 240px;
     height: 26px;
     margin-top: 0px;
+  }
+
+  @media (max-width: 1200px) {
   }
 `;
 
@@ -99,7 +113,15 @@ const StyledLink = styled(Link)`
   }
 
   @media (max-width: 400px) {
-    text-align: center;
+    .collapsibleLink {
+      padding: 12px 16px;
+
+      width: 150px;
+    }
+
+    .cart {
+      display: none;
+    }
   }
 `;
 
@@ -109,7 +131,7 @@ const NavImage = styled.img`
   border-radius: 50px;
 
   @media (max-width: 1200px) {
-    width: ${(props) => (props.banner ? "70%" : "50px")};
+    width: ${(props) => (props.banner ? "50%" : "50px")};
     height: ${(props) => (props.banner ? "auto" : "50px")};
   }
 
@@ -117,17 +139,16 @@ const NavImage = styled.img`
     width: ${(props) => (props.banner ? "60%" : "50px")};
     height: ${(props) => (props.banner ? "auto" : "50px")};
   }
-
   @media (max-width: 600px) {
     width: ${(props) => (props.banner ? "50%" : "50px")};
     height: ${(props) => (props.banner ? "auto" : "50px")};
   }
 
-  @media (max-width: 400px) {
+  /* @media (max-width: 400px) {
     align-self: center;
     width: ${(props) => (props.banner ? "50%" : "50px")};
     height: ${(props) => (props.banner ? "auto" : "50px")};
-  }
+  } */
 `;
 
 const SearchBarButton = styled.button`
@@ -151,14 +172,15 @@ const Navbar1 = styled.div`
   transform: ${(props) =>
     props.isSticky ? "translateY(-150px)" : "translateY(0)"};
 
-  @media (max-width: 768px) {
-    height: 100px;
+  @media (max-width: 600px) {
+    position: relative;
+    /* height: 100px; */
     transform: ${(props) =>
       props.isSticky ? "translateY(-100px)" : "translateY(0)"};
   }
 
   @media (max-width: 480px) {
-    height: 80px;
+    /* height: 80px; */
     transform: ${(props) =>
       props.isSticky ? "translateY(-80px)" : "translateY(0)"};
   }
@@ -175,7 +197,22 @@ const Navbar2 = styled.div`
     props.isSticky ? "translateY(-130px)" : "translateY(0)"};
 
   @media (max-width: 600px) {
-    height: 150px;
+    display: ${(props) => (props.bars ? "flex" : "none")};
+    justify-content: flex-start;
+    position: relative;
+    top: 0px;
+    left: 0;
+  }
+`;
+
+const Bars = styled.div`
+  display: none;
+
+  @media (max-width: 600px) {
+    display: inline;
+    top: -10px;
+    right: 2.8rem;
+    position: relative;
   }
 `;
 export {
@@ -188,4 +225,5 @@ export {
   Navbar1,
   Navbar2,
   SearchBarButton,
+  Bars,
 };

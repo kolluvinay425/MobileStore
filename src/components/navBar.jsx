@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { FaUser, FaUserPlus } from "react-icons/fa";
+import { FaUser, FaUserPlus, FaCartPlus, FaBars } from "react-icons/fa";
 import MultiLevelDropdown from "./DropDownTree";
 import {
   NavList,
@@ -10,6 +10,7 @@ import {
   Navbar1,
   Navbar2,
   SearchBarButton,
+  Bars,
 } from "./styles/NavBarStyles";
 import { productCategories } from "../static/helper";
 import { Link } from "react-router-dom";
@@ -19,6 +20,7 @@ const NavBar = () => {
   const navRef = useRef(null);
 
   const [isSticky, setIsSticky] = useState(false);
+  const [isNavbar2Visible, setIsNavbar2Visible] = useState(false);
 
   const handleScroll = () => {
     if (window.scrollY > 100 && window.innerWidth > 768) {
@@ -49,12 +51,22 @@ const NavBar = () => {
     return () => window.removeEventListener("resize", updateBodyPadding);
   }, [navRef]);
 
+  const toggleNavbar2 = () => {
+    console.log(isNavbar2Visible);
+    setIsNavbar2Visible(!isNavbar2Visible);
+  };
   return (
     <>
       <Navbar1 className="navbar1" isSticky={isSticky}>
         <Nav className="nav1" center={true}>
           <NavList navOne={true}>
             <StyledLink to="/">
+              <Bars onClick={toggleNavbar2}>
+                <FaBars
+                  style={{ marginRight: "5px", height: "35px", width: "40px" }}
+                />
+              </Bars>
+
               <NavImage
                 banner={true}
                 src="https://mikrofin.com/images/2022/12/22/mobishop.png"
@@ -80,23 +92,58 @@ const NavBar = () => {
         </Nav>
       </Navbar1>
 
-      <Navbar2 class="navbar2" ref={navRef} isSticky={isSticky}>
-        <Nav>
+      <Navbar2
+        class="navbar2"
+        bars={isNavbar2Visible}
+        ref={navRef}
+        isSticky={isSticky}
+      >
+        <Nav className="Nav2" bars={isNavbar2Visible}>
           <NavList>
-            <StyledLink to="/">Home</StyledLink>
+            <StyledLink
+              onClick={toggleNavbar2}
+              className="collapsibleLink"
+              to="/"
+            >
+              Home
+            </StyledLink>
             <MultiLevelDropdown categories={productCategories} />
-            <StyledLink to="/something">Categories</StyledLink>
-            <StyledLink to="/about">About</StyledLink>
+            <StyledLink
+              onClick={toggleNavbar2}
+              className="collapsibleLink"
+              to="/something"
+            >
+              Categories
+            </StyledLink>
+            <StyledLink
+              onClick={toggleNavbar2}
+              className="collapsibleLink"
+              to="/about"
+            >
+              About
+            </StyledLink>
             <MultiLevelDropdown categories={productCategories} />
-            <StyledLink to="/something">Categories</StyledLink>
-            <StyledLink to="/about">About</StyledLink>
+            <StyledLink
+              onClick={toggleNavbar2}
+              className="collapsibleLink"
+              to="/something"
+            >
+              Categories
+            </StyledLink>
+            <StyledLink
+              onClick={toggleNavbar2}
+              className="collapsibleLink"
+              to="/about"
+            >
+              About
+            </StyledLink>
           </NavList>
-          <Link to="/">
-            <NavImage
-              src="https://e1.pxfuel.com/desktop-wallpaper/305/658/desktop-wallpaper-720x1280-flame-latinica-letter-letter-alphabet-fire-v-6335-fire-letters-thumbnail.jpg"
-              alt="Your Image"
+          <StyledLink to="/register">
+            <FaCartPlus
+              className="cart"
+              style={{ marginRight: "5px", height: "35px", width: "40px" }}
             />
-          </Link>
+          </StyledLink>
         </Nav>
       </Navbar2>
     </>
