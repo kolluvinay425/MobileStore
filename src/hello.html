@@ -3,29 +3,43 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>List of H5 Elements</title>
+    <title>Table Toggle Example</title>
     <style>
-      .container {
-        width: 300px;
-        margin: 0 auto;
-        padding: 20px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        background-color: #f9f9f9;
+      .hidden {
+        display: none;
       }
-      .container h5 {
-        margin: 10px 0;
-        color: #333;
+      .table-container {
+        margin-bottom: 20px;
       }
     </style>
   </head>
   <body>
-    <div class="container">
-      <h5>Item 1</h5>
-      <h5>Item 2</h5>
-      <h5>Item 3</h5>
-      <h5>Item 4</h5>
-      <h5>Item 5</h5>
+    <div class="table-container">
+      <button onclick="toggleTable()">Show/Hide Table</button>
+      <table id="extraTable" class="hidden">
+        <tr>
+          <th>Header 1</th>
+          <th>Header 2</th>
+        </tr>
+        <tr>
+          <td>Data 1</td>
+          <td>Data 2</td>
+        </tr>
+      </table>
     </div>
+    <div>
+      <p>This content will be pushed down when the table is shown.</p>
+    </div>
+
+    <script>
+      function toggleTable() {
+        var table = document.getElementById("extraTable");
+        if (table.classList.contains("hidden")) {
+          table.classList.remove("hidden");
+        } else {
+          table.classList.add("hidden");
+        }
+      }
+    </script>
   </body>
 </html>

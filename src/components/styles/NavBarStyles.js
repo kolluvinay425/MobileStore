@@ -55,7 +55,7 @@ const NavList = styled.div`
     display: contents;
   }
 
-  @media (max-width: 890px) {
+  @media (max-width: 600px) {
     justify-content: center;
   }
 
@@ -67,7 +67,7 @@ const NavList = styled.div`
   @media (max-width: 600px) {
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: ${(props) => (props.isNavbar2Visible ? "left" : "center")};
     /* margin-right: auto; */
     gap: 10px;
     .search-container {
@@ -106,7 +106,6 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   text-transform: uppercase;
   font-weight: 500;
-  /* height: 50px; */
   text-align: center;
   &:hover {
     color: #27ace1;
@@ -143,12 +142,6 @@ const NavImage = styled.img`
     width: ${(props) => (props.banner ? "50%" : "50px")};
     height: ${(props) => (props.banner ? "auto" : "50px")};
   }
-
-  /* @media (max-width: 400px) {
-    align-self: center;
-    width: ${(props) => (props.banner ? "50%" : "50px")};
-    height: ${(props) => (props.banner ? "auto" : "50px")};
-  } */
 `;
 
 const SearchBarButton = styled.button`
@@ -199,8 +192,8 @@ const Navbar2 = styled.div`
   @media (max-width: 600px) {
     display: ${(props) => (props.bars ? "flex" : "none")};
     justify-content: flex-start;
-    position: relative;
-    top: 0px;
+    position: absolute;
+    top: 76px;
     left: 0;
   }
 `;

@@ -3,7 +3,10 @@ import styled from "styled-components";
 
 const DropdownContainer = styled.div`
   position: relative;
-  display: inline-block;
+  /* display: inline-block; */
+  @media (max-width: 600px) {
+    width: fit-content;
+  }
 `;
 
 const StyledLink = styled.a`
@@ -18,19 +21,26 @@ const StyledLink = styled.a`
   }
 
   @media (max-width: 890px) {
-    display: none;
+    /* display: none; */
   }
 `;
 
 const Menu = styled.div`
+  border-top: 2px solid #27ace1;
   display: ${(props) => (props.show ? "block" : "none")};
   position: absolute;
-  top: 60px;
+  top: 39px;
   left: 0;
   background-color: #fff;
   color: #2d2f31;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   z-index: 1;
+
+  @media (max-width: 600px) {
+    box-shadow: none;
+    left: 5px;
+    position: inherit;
+  }
 `;
 
 const MenuItem = styled.div`
@@ -58,6 +68,9 @@ const SubMenuTitle = styled.div`
     font-weight: 600; /* Slightly bolder font weight on hover */
     color: #27ace1;
   }
+
+  @media (max-width: 600px) {
+  }
 `;
 
 const SubMenu = styled.div`
@@ -71,13 +84,19 @@ const SubMenu = styled.div`
 `;
 
 const SubMenuContent = styled.div`
+  border-top: 2px solid #27ace1;
   display: none;
   position: absolute;
-  top: 0;
+  top: -2px;
   left: 100%;
   background-color: #fff;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   z-index: 1;
+  @media (max-width: 600px) {
+    box-shadow: none;
+    top: 40px;
+    left: 5px;
+  }
 `;
 
 const Arrow = styled.span`
