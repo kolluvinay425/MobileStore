@@ -100,6 +100,8 @@ const NavBar = () => {
       >
         <Nav className="Nav2" bars={isNavbar2Visible}>
           <NavList isNavbar2Visible={isNavbar2Visible} className="navList2">
+            <MultiLevelDropdown categories={productCategories} />
+
             <StyledLink
               onClick={toggleNavbar2}
               className="collapsibleLink"
@@ -108,7 +110,6 @@ const NavBar = () => {
               Home
             </StyledLink>
 
-            <MultiLevelDropdown categories={productCategories} />
             <StyledLink
               onClick={toggleNavbar2}
               className="collapsibleLink"
@@ -123,8 +124,6 @@ const NavBar = () => {
             >
               About
             </StyledLink>
-
-            <MultiLevelDropdown categories={productCategories} />
 
             <StyledLink
               onClick={toggleNavbar2}

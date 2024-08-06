@@ -12,7 +12,7 @@ const Nav = styled.nav`
   padding: 10px;
   padding-left: 0;
 
-  @media (max-width: 600px) {
+  @media (max-width: 820px) {
     justify-content: flex-start;
     padding-right: 0;
   }
@@ -34,7 +34,7 @@ const NavList = styled.div`
   gap: 22px;
   align-items: center;
 
-  @media (max-width: 600px) {
+  @media (max-width: 820px) {
     flex-direction: column;
     /* margin: 0 auto; */
     padding: 20px;
@@ -55,7 +55,7 @@ const NavList = styled.div`
     display: contents;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 820px) {
     justify-content: center;
   }
 
@@ -64,7 +64,7 @@ const NavList = styled.div`
       display: inline-flex;
     }
   }
-  @media (max-width: 600px) {
+  @media (max-width: 820px) {
     flex-direction: column;
     justify-content: center;
     align-items: ${(props) => (props.isNavbar2Visible ? "left" : "center")};
@@ -88,7 +88,7 @@ const SearchBar = styled.input`
   outline: none;
   width: 400px;
 
-  @media (max-width: 600px) {
+  @media (max-width: 820px) {
     padding: 10px;
     width: 240px;
     height: 26px;
@@ -111,9 +111,10 @@ const StyledLink = styled(Link)`
     color: #27ace1;
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 820px) {
     .collapsibleLink {
       padding: 12px 16px;
+      border-top: 0.5px solid #2d2f31;
 
       width: 150px;
     }
@@ -138,7 +139,7 @@ const NavImage = styled.img`
     width: ${(props) => (props.banner ? "60%" : "50px")};
     height: ${(props) => (props.banner ? "auto" : "50px")};
   }
-  @media (max-width: 600px) {
+  @media (max-width: 820px) {
     width: ${(props) => (props.banner ? "50%" : "50px")};
     height: ${(props) => (props.banner ? "auto" : "50px")};
   }
@@ -148,7 +149,7 @@ const SearchBarButton = styled.button`
   height: 49px;
   width: 50px;
 
-  @media (max-width: 600px) {
+  @media (max-width: 820px) {
     height: 49px;
     width: 50px;
   }
@@ -165,7 +166,7 @@ const Navbar1 = styled.div`
   transform: ${(props) =>
     props.isSticky ? "translateY(-150px)" : "translateY(0)"};
 
-  @media (max-width: 600px) {
+  @media (max-width: 820px) {
     position: relative;
     /* height: 100px; */
     transform: ${(props) =>
@@ -189,19 +190,24 @@ const Navbar2 = styled.div`
   transform: ${(props) =>
     props.isSticky ? "translateY(-130px)" : "translateY(0)"};
 
-  @media (max-width: 600px) {
+  @media (max-width: 820px) {
     display: ${(props) => (props.bars ? "flex" : "none")};
-    justify-content: flex-start;
+    /* justify-content: flex-start; */
     position: absolute;
     top: 76px;
     left: 0;
+    overflow: auto;
+    .Nav2 {
+      padding: 0px 20px 20px 20px;
+      margin-top: 10px;
+    }
   }
 `;
 
 const Bars = styled.div`
   display: none;
 
-  @media (max-width: 600px) {
+  @media (max-width: 820px) {
     display: inline;
     top: -10px;
     right: 2.8rem;

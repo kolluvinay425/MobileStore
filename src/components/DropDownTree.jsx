@@ -3,9 +3,13 @@ import styled from "styled-components";
 
 const DropdownContainer = styled.div`
   position: relative;
+
   /* display: inline-block; */
-  @media (max-width: 600px) {
-    width: fit-content;
+  @media (max-width: 820px) {
+    /* width: 100%; */
+    margin: 10px;
+    /* overflow: auto; */
+    /* position: static; */
   }
 `;
 
@@ -15,13 +19,17 @@ const StyledLink = styled.a`
   text-decoration: none;
   text-transform: uppercase;
   font-weight: 500;
-
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
   &:hover {
     color: #27ace1;
   }
 
+  @media (max-width: 820px) {
+  }
+
   @media (max-width: 890px) {
-    /* display: none; */
   }
 `;
 
@@ -36,10 +44,13 @@ const Menu = styled.div`
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   z-index: 1;
 
-  @media (max-width: 600px) {
+  @media (max-width: 820px) {
     box-shadow: none;
+    border-top: none;
     left: 5px;
-    position: inherit;
+    top: 10px;
+    position: relative;
+    /* overflow: auto; */
   }
 `;
 
@@ -50,8 +61,11 @@ const MenuItem = styled.div`
   transition: background-color 0.1s ease-in-out, font-weight 0.1s ease-in-out;
   &:hover {
     background-color: #f1f1f1;
-    font-weight: 600; /* Slightly bolder font weight on hover */
-    color: #27ace1;
+    font-weight: 820; /* Slightly bolder font weight on hover */
+    color: #2d2f31;
+  }
+  @media (max-width: 820px) {
+    border-top: 0.5px solid #2d2f31;
   }
 `;
 
@@ -65,21 +79,27 @@ const SubMenuTitle = styled.div`
   transition: background-color 0.1s ease-in-out, font-weight 0.2s ease-in-out;
   &:hover {
     background-color: #f1f1f1;
-    font-weight: 600; /* Slightly bolder font weight on hover */
-    color: #27ace1;
+    font-weight: 820; /* Slightly bolder font weight on hover */
+    color: #2d2f31;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 820px) {
+    border-top: 0.5px solid #2d2f31;
   }
 `;
 
 const SubMenu = styled.div`
   position: relative;
   &:hover > div {
-    display: block;
+    display: inherit;
   }
   &:hover > ${SubMenuTitle} {
     background-color: #f1f1f1;
+  }
+  @media (max-width: 820px) {
+    &:hover > ${SubMenuTitle} {
+      background-color: none;
+    }
   }
 `;
 
@@ -92,9 +112,10 @@ const SubMenuContent = styled.div`
   background-color: #fff;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   z-index: 1;
-  @media (max-width: 600px) {
+  @media (max-width: 820px) {
+    position: relative;
+    border-top: none;
     box-shadow: none;
-    top: 40px;
     left: 5px;
   }
 `;
@@ -120,21 +141,26 @@ const MultiLevelDropdown = ({ categories }) => {
   };
   return (
     <DropdownContainer
+      className="dropdownContainer"
       onMouseEnter={() => handleEnter()}
       onMouseLeave={() => handleMove()}
     >
-      <StyledLink>Products</StyledLink>
+      <StyledLink>
+        Products <Arrow>›</Arrow>
+      </StyledLink>
       <Menu
         onMouseEnter={() => handleEnter()}
         onMouseLeave={() => handleMove()}
         show={showMenu}
       >
         {categories.map((category) => (
-          <SubMenu key={category.name}>
+          <SubMenu className="subMenu" key={category.name}>
             <SubMenuTitle>
               {category.name}
-              {/* <Arrow>{">"}</Arrow> */}
+
+              <Arrow>›</Arrow>
             </SubMenuTitle>
+
             <SubMenuContent>
               {category.subCategories.map((subCategory) => (
                 <MenuItem key={subCategory}>{subCategory}</MenuItem>
