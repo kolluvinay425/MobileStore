@@ -1,0 +1,10 @@
+/* Add this to your stylesheet or component-specific styles */
+.slider-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.slick-list {
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+}

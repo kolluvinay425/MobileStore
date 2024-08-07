@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Table Toggle Example</title>
+    <style>
+      .hidden {
+        display: none;
+      }
+      .table-container {
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="table-container">
+      <button onclick="toggleTable()">Show/Hide Table</button>
+      <table id="extraTable" class="hidden">
+        <tr>
+          <th>Header 1</th>
+          <th>Header 2</th>
+        </tr>
+        <tr>
+          <td>Data 1</td>
+          <td>Data 2</td>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <p>This content will be pushed down when the table is shown.</p>
+    </div>
+
+    <script>
+      function toggleTable() {
+        var table = document.getElementById("extraTable");
+        if (table.classList.contains("hidden")) {
+          table.classList.remove("hidden");
+        } else {
+          table.classList.add("hidden");
+        }
+      }
+    </script>
+  </body>
+</html>
