@@ -9,10 +9,14 @@ const Nav = styled.nav`
   justify-content: ${(props) => (props.center ? "center" : "space-evenly")};
   /* flex-direction: ${(props) => (props.navOne ? "column" : "row")}; */
   z-index: 1000;
-  padding: 10px;
+  padding: 20px;
   padding-left: 0;
 
-  @media (max-width: 820px) {
+  @media (min-width: 951px) and (max-width: 1200px) {
+    padding: 32px;
+  }
+
+  @media (max-width: 950px) {
     justify-content: flex-start;
     padding-right: 0;
   }
@@ -34,7 +38,7 @@ const NavList = styled.div`
   gap: 22px;
   align-items: center;
 
-  @media (max-width: 820px) {
+  @media (max-width: 950px) {
     flex-direction: column;
     /* margin: 0 auto; */
     padding: 20px;
@@ -55,7 +59,7 @@ const NavList = styled.div`
     display: contents;
   }
 
-  @media (max-width: 820px) {
+  @media (max-width: 950px) {
     justify-content: center;
   }
 
@@ -64,7 +68,7 @@ const NavList = styled.div`
       display: inline-flex;
     }
   }
-  @media (max-width: 820px) {
+  @media (max-width: 950px) {
     flex-direction: column;
     justify-content: center;
     align-items: ${(props) => (props.isNavbar2Visible ? "left" : "center")};
@@ -88,7 +92,7 @@ const SearchBar = styled.input`
   outline: none;
   width: 400px;
 
-  @media (max-width: 820px) {
+  @media (max-width: 950px) {
     padding: 10px;
     width: 240px;
     height: 26px;
@@ -111,7 +115,7 @@ const StyledLink = styled(Link)`
     color: #27ace1;
   }
 
-  @media (max-width: 820px) {
+  @media (max-width: 950px) {
     .collapsibleLink {
       padding: 12px 16px;
       border-top: 0.5px solid #2d2f31;
@@ -131,7 +135,7 @@ const NavImage = styled.img`
   border-radius: 50px;
 
   @media (max-width: 1200px) {
-    width: ${(props) => (props.banner ? "50%" : "50px")};
+    width: ${(props) => (props.banner ? "200px" : "50px")};
     height: ${(props) => (props.banner ? "auto" : "50px")};
   }
 
@@ -139,7 +143,7 @@ const NavImage = styled.img`
     width: ${(props) => (props.banner ? "60%" : "50px")};
     height: ${(props) => (props.banner ? "auto" : "50px")};
   }
-  @media (max-width: 820px) {
+  @media (max-width: 950px) {
     width: ${(props) => (props.banner ? "50%" : "50px")};
     height: ${(props) => (props.banner ? "auto" : "50px")};
   }
@@ -149,7 +153,7 @@ const SearchBarButton = styled.button`
   height: 49px;
   width: 50px;
 
-  @media (max-width: 820px) {
+  @media (max-width: 950px) {
     height: 49px;
     width: 50px;
   }
@@ -161,12 +165,12 @@ const Navbar1 = styled.div`
   width: 100%;
   top: 0;
   z-index: 1;
-  height: 150px;
+  /* height: 150px; */
   transition: transform 0.3s; /* Faster transition using transform */
   transform: ${(props) =>
     props.isSticky ? "translateY(-150px)" : "translateY(0)"};
 
-  @media (max-width: 820px) {
+  @media (max-width: 950px) {
     position: relative;
     /* height: 100px; */
     transform: ${(props) =>
@@ -184,13 +188,13 @@ const Navbar2 = styled.div`
   color: white;
   position: fixed;
   width: 100%;
-  top: 120px; /* Adjusted to match Navbar1 height */
+  top: 120px;
   z-index: 2;
   transition: transform 0.1s; /* Faster transition using transform */
   transform: ${(props) =>
     props.isSticky ? "translateY(-130px)" : "translateY(0)"};
 
-  @media (max-width: 820px) {
+  @media (max-width: 950px) {
     display: ${(props) => (props.bars ? "flex" : "none")};
     /* justify-content: flex-start; */
     position: absolute;
@@ -207,7 +211,7 @@ const Navbar2 = styled.div`
 const Bars = styled.div`
   display: none;
 
-  @media (max-width: 820px) {
+  @media (max-width: 950px) {
     display: inline;
     top: -10px;
     right: 2.8rem;

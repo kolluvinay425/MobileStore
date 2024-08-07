@@ -23,7 +23,7 @@ const NavBar = () => {
   const [isNavbar2Visible, setIsNavbar2Visible] = useState(false);
 
   const handleScroll = () => {
-    if (window.scrollY > 100 && window.innerWidth > 768) {
+    if (window.scrollY > 100 && window.innerWidth > 950) {
       setIsSticky(true);
     } else {
       setIsSticky(false);
@@ -42,7 +42,7 @@ const NavBar = () => {
       if (navRef.current) {
         const navHeight = navRef.current.clientHeight;
         document.body.style.paddingTop =
-          window.innerWidth > 768 ? `${navHeight + 100}px` : `${navHeight}px`;
+          window.innerWidth > 950 ? `${navHeight + 100}px` : `${navHeight}px`;
       }
     };
 

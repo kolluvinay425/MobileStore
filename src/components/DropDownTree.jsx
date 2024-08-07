@@ -5,7 +5,7 @@ const DropdownContainer = styled.div`
   position: relative;
 
   /* display: inline-block; */
-  @media (max-width: 820px) {
+  @media (max-width: 950px) {
     /* width: 100%; */
     margin: 10px;
     /* overflow: auto; */
@@ -26,7 +26,7 @@ const StyledLink = styled.a`
     color: #27ace1;
   }
 
-  @media (max-width: 820px) {
+  @media (max-width: 950px) {
   }
 
   @media (max-width: 890px) {
@@ -44,7 +44,7 @@ const Menu = styled.div`
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   z-index: 1;
 
-  @media (max-width: 820px) {
+  @media (max-width: 950px) {
     box-shadow: none;
     border-top: none;
     left: 5px;
@@ -64,7 +64,7 @@ const MenuItem = styled.div`
     font-weight: 820; /* Slightly bolder font weight on hover */
     color: #2d2f31;
   }
-  @media (max-width: 820px) {
+  @media (max-width: 950px) {
     border-top: 0.5px solid #2d2f31;
   }
 `;
@@ -83,7 +83,7 @@ const SubMenuTitle = styled.div`
     color: #2d2f31;
   }
 
-  @media (max-width: 820px) {
+  @media (max-width: 950px) {
     border-top: 0.5px solid #2d2f31;
   }
 `;
@@ -96,7 +96,7 @@ const SubMenu = styled.div`
   &:hover > ${SubMenuTitle} {
     background-color: #f1f1f1;
   }
-  @media (max-width: 820px) {
+  @media (max-width: 950px) {
     &:hover > ${SubMenuTitle} {
       background-color: none;
     }
@@ -112,11 +112,11 @@ const SubMenuContent = styled.div`
   background-color: #fff;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   z-index: 1;
-  @media (max-width: 820px) {
+  @media (max-width: 950px) {
     position: relative;
     border-top: none;
     box-shadow: none;
-    left: 5px;
+    left: 10px;
   }
 `;
 
