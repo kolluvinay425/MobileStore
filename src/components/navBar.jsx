@@ -13,8 +13,6 @@ import {
   Bars,
 } from "./styles/NavBarStyles";
 import { productCategories } from "../static/helper";
-import { Link } from "react-router-dom";
-import { Button } from "antd";
 
 const NavBar = () => {
   const navRef = useRef(null);

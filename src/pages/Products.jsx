@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-
 // Styled Components
 const Container = styled.div`
   display: flex;
@@ -25,10 +24,12 @@ const FilterSection = styled.div`
 const FilterTitle = styled.h3`
   font-size: 16px;
   margin-bottom: 10px;
+  padding: 10px;
 `;
 
 const FilterOption = styled.div`
   margin-bottom: 8px;
+  padding: 10px;
 `;
 
 const MainContent = styled.div`
@@ -69,62 +70,134 @@ const ProductPrice = styled.p`
 const Products = () => {
   const { title } = useParams(); // Extract the title parameter from the URL
 
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    // console.log("url---->", process.env.REACT_APP_ROOT_API_URI);
+    const fetchRestaurants = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_ROOT_API_URI}/restaurants`
+        );
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error("Error fetching restaurant data:", error);
+      }
+    };
+
+    fetchRestaurants();
+  }, []);
+
   // Dummy data for demonstration purposes
   const filters = {
     brand: ["Samsung", "Apple", "Huawei", "Xiaomi"],
     priceRange: ["Under $300", "$300 - $600", "$600 - $900", "Above $900"],
   };
 
-  const products = [
-    {
-      id: 1,
-      name: "Samsung Galaxy S24",
-      image: "https://via.placeholder.com/200",
-      price: "$999",
-    },
-    {
-      id: 2,
-      name: "Samsung Galaxy S24 Plus",
-      image: "https://via.placeholder.com/200",
-      price: "$1199",
-    },
-    // Add more products as needed
-  ];
+  // const products = [
+  //   {
+  //     id: 1,
+  //     name: "Samsung Galaxy S24",
+  //     image: "https://via.placeholder.com/200",
+  //     price: "$999",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Samsung Galaxy S24 Plus",
+  //     image: "https://via.placeholder.com/200",
+  //     price: "$1199",
+  //   },
+  //   {
+  //     id: 1,
+  //     name: "Samsung Galaxy S24",
+  //     image: "https://via.placeholder.com/200",
+  //     price: "$999",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Samsung Galaxy S24 Plus",
+  //     image: "https://via.placeholder.com/200",
+  //     price: "$1199",
+  //   },
+  //   {
+  //     id: 1,
+  //     name: "Samsung Galaxy S24",
+  //     image: "https://via.placeholder.com/200",
+  //     price: "$999",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Samsung Galaxy S24 Plus",
+  //     image: "https://via.placeholder.com/200",
+  //     price: "$1199",
+  //   },
+  //   {
+  //     id: 1,
+  //     name: "Samsung Galaxy S24",
+  //     image: "https://via.placeholder.com/200",
+  //     price: "$999",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Samsung Galaxy S24 Plus",
+  //     image: "https://via.placeholder.com/200",
+  //     price: "$1199",
+  //   },
+  //   {
+  //     id: 1,
+  //     name: "Samsung Galaxy S24",
+  //     image: "https://via.placeholder.com/200",
+  //     price: "$999",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Samsung Galaxy S24 Plus",
+  //     image: "https://via.placeholder.com/200",
+  //     price: "$1199",
+  //   },
+  //   // Add more products as needed
+  // ];
 
   return (
-    <Container>
-      <Sidebar>
-        <FilterSection>
-          <FilterTitle>Brand</FilterTitle>
-          {filters.brand.map((brand, index) => (
-            <FilterOption key={index}>
-              <input type="checkbox" id={`brand-${index}`} />
-              <label htmlFor={`brand-${index}`}>{brand}</label>
-            </FilterOption>
-          ))}
-        </FilterSection>
-        <FilterSection>
-          <FilterTitle>Price Range</FilterTitle>
-          {filters.priceRange.map((range, index) => (
-            <FilterOption key={index}>
-              <input type="checkbox" id={`price-${index}`} />
-              <label htmlFor={`price-${index}`}>{range}</label>
-            </FilterOption>
-          ))}
-        </FilterSection>
-      </Sidebar>
-      <MainContent>
-        <ProductList>
-          {products.map((product) => (
-            <ProductCard key={product.id}>
-              <ProductImage src={product.image} alt={product.name} />
-              <ProductName>{product.name}</ProductName>
-              <ProductPrice>{product.price}</ProductPrice>
-            </ProductCard>
-          ))}
-        </ProductList>
-      </MainContent>
-    </Container>
+    <>
+      <Container>
+        <Sidebar>
+          <FilterSection>
+            <FilterTitle>Brand</FilterTitle>
+            {filters.brand.map((brand, index) => (
+              <FilterOption key={index}>
+                <input type="checkbox" id={`brand-${index}`} />
+                <label htmlFor={`brand-${index}`}>{brand}</label>
+              </FilterOption>
+            ))}
+          </FilterSection>
+          <FilterSection>
+            <FilterTitle>Price Range</FilterTitle>
+            {filters.priceRange.map((range, index) => (
+              <FilterOption key={index}>
+                <input type="checkbox" id={`price-${index}`} />
+                <label htmlFor={`price-${index}`}>{range}</label>
+              </FilterOption>
+            ))}
+          </FilterSection>
+        </Sidebar>
+        <MainContent>
+          <ProductList>
+            {products &&
+              products.map((product) => (
+                <ProductCard key={product.id}>
+                  <ProductImage src={product.image} alt={product.name} />
+                  <ProductName>{product.name}</ProductName>
+                  <ProductPrice>{product.price}</ProductPrice>
+                </ProductCard>
+              ))}
+
+            {products.length == 0 && <h1>loading....</h1>}
+          </ProductList>
+        </MainContent>
+      </Container>
+    </>
   );
 };
 
