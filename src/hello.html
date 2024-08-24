@@ -3,291 +3,43 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Scroll Over Carousel</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title>Table Toggle Example</title>
     <style>
-      body,
-      html {
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden;
+      .hidden {
+        display: none;
       }
-
-      .navbar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 60px; /* Adjust the height as needed */
-        background-color: #555;
-        color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1000;
-      }
-
-      .navbar a {
-        color: white;
-        text-decoration: none;
-        padding: 0 15px;
-        font-size: 1.2rem;
-      }
-
-      .carousel {
-        position: fixed;
-        top: 60px; /* Adjust to account for navbar height */
-        left: 0;
-        width: 100%;
-        height: 50vh; /* Adjust the height as needed */
-        background-color: #333;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1;
-      }
-
-      .carousel-item {
-        color: white;
-        font-size: 2rem;
-        margin: 0 1rem;
-      }
-
-      .content {
-        margin-top: calc(
-          50vh + 60px
-        ); /* Same as carousel height + navbar height */
-        padding: 2rem;
-        background-color: #f4f4f4;
-        z-index: 2;
-        position: relative;
+      .table-container {
+        margin-bottom: 20px;
       }
     </style>
   </head>
   <body>
-    <div class="navbar">
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#services">Services</a>
-      <a href="#contact">Contact</a>
+    <div class="table-container">
+      <button onclick="toggleTable()">Show/Hide Table</button>
+      <table id="extraTable" class="hidden">
+        <tr>
+          <th>Header 1</th>
+          <th>Header 2</th>
+        </tr>
+        <tr>
+          <td>Data 1</td>
+          <td>Data 2</td>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <p>This content will be pushed down when the table is shown.</p>
     </div>
 
-    <div class="carousel">
-      <!-- Your carousel content here -->
-      <div class="carousel-item">Item 1</div>
-      <div class="carousel-item">Item 2</div>
-      <div class="carousel-item">Item 3</div>
-    </div>
-
-    <div class="content">
-      <!-- Your main content here -->
-      <p>Scroll down to see the effect...</p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        vehicula...
-      </p>
-      <!-- Add more content as needed -->
-    </div>
-    <script src="script.js"></script>
+    <script>
+      function toggleTable() {
+        var table = document.getElementById("extraTable");
+        if (table.classList.contains("hidden")) {
+          table.classList.remove("hidden");
+        } else {
+          table.classList.add("hidden");
+        }
+      }
+    </script>
   </body>
 </html>

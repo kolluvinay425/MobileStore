@@ -24,6 +24,7 @@ const slideInFromBottom = keyframes`
 `;
 
 export const CarousalWrapper = styled.div`
+  padding-top: 20px;
   background-image: url("https://t3.ftcdn.net/jpg/03/16/91/28/360_F_316912806_RCeHVmUx5LuBMi7MKYTY5arkE4I0DcpU.jpg");
   min-height: 52vh;
   background-size: cover; // Ensures the background image covers the entire container

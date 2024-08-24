@@ -1,7 +1,8 @@
 import React from "react";
+import HomeCarousal from "../components/Caurosel";
 
 function About() {
-  return <h2>About</h2>;
+  return <HomeCarousal />;
 }
 
 export default About;
