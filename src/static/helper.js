@@ -3,28 +3,28 @@ export const slideData = [
     image:
       "https://assets.swappie.com/cdn-cgi/image/width=600,height=600,fit=contain,format=auto/swappie-iphone-15-pro-natural-titanium-back.png?v=35a9d192",
     description: "Thought ,Thinking of Everything",
-    title: "Teju",
+    title: "Iphone 15",
     link: "See the Offer",
   },
   {
     image:
       "https://images.samsung.com/is/image/samsung/p6pim/it/2307/gallery/it-galaxy-z-fold5-slim-s-pen-case-ef-of94p-ef-of94pcuegww-537309477?$650_519_PNG$",
     description: "Foldable device that will more powerful",
-    title: "Mangipudi",
+    title: "Galaxy Fold Z",
     link: "See the Offer",
   },
   {
     image:
       "https://images.samsung.com/is/image/samsung/p6pim/it/2401/gallery/it-galaxy-s24-s928-sm-s928bzkgeue-539381475?$650_519_PNG$",
     description: "Powerful s series smart androd phone",
-    title: "Vinay",
+    title: "Galaxy S24",
     link: "See the Offer",
   },
   {
     image:
       "https://opsg-img-cdn-gl.heytapimg.com/epb/202401/03/FmsGOwNtafyTY2BK.png",
     description: "Powerful Oppo smart phone",
-    title: "Kollu",
+    title: "Oppo A78",
     link: "See the Offer",
   },
 ];
