@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import NavBar from "./components/navBar";
-import LoginPage from "./components/Login";
+import LoginPage from "./pages/Login";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Products from "./pages/Products";
@@ -18,7 +18,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/about" element={<About />} />
-            <Route path="/shop/:title" element={<Products />} />
+            <Route path="/shop/:brand/:model" element={<Products />} />
           </Routes>
           {/* <NavBar /> */}
         </div>

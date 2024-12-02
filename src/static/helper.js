@@ -1,5 +1,6 @@
 export const slideData = [
   {
+    brand: "Apple",
     image:
       "https://assets.swappie.com/cdn-cgi/image/width=600,height=600,fit=contain,format=auto/swappie-iphone-15-pro-natural-titanium-back.png?v=35a9d192",
     description: "Thought ,Thinking of Everything",
@@ -7,13 +8,15 @@ export const slideData = [
     link: "See the Offer",
   },
   {
+    brand: "Sony",
     image:
       "https://images.samsung.com/is/image/samsung/p6pim/it/2307/gallery/it-galaxy-z-fold5-slim-s-pen-case-ef-of94p-ef-of94pcuegww-537309477?$650_519_PNG$",
     description: "Foldable device that will more powerful",
-    title: "Galaxy Fold Z",
+    title: "Xperia 1",
     link: "See the Offer",
   },
   {
+    brand: "Samsung",
     image:
       "https://images.samsung.com/is/image/samsung/p6pim/it/2401/gallery/it-galaxy-s24-s928-sm-s928bzkgeue-539381475?$650_519_PNG$",
     description: "Powerful s series smart androd phone",
@@ -21,6 +24,7 @@ export const slideData = [
     link: "See the Offer",
   },
   {
+    brand: "Oppo",
     image:
       "https://opsg-img-cdn-gl.heytapimg.com/epb/202401/03/FmsGOwNtafyTY2BK.png",
     description: "Powerful Oppo smart phone",
