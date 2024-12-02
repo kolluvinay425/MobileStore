@@ -1,13 +1,14 @@
 import React, { useRef, useState } from "react";
 import styled from "styled-components";
+import useHandleNavigation from "../hooks/useHandleNavigation";
 
 const DropdownContainer = styled.div`
   position: relative;
-
   /* display: inline-block; */
   @media (max-width: 950px) {
-    /* width: 100%; */
     margin: 10px;
+    width: 500px;
+
     /* overflow: auto; */
     /* position: static; */
   }
@@ -125,6 +126,7 @@ const Arrow = styled.span`
 `;
 
 const MultiLevelDropdown = ({ categories }) => {
+  const handleButtonClick = useHandleNavigation();
   const [showMenu, setShowMenu] = useState(false);
 
   const timerRef = useRef(null);
@@ -139,6 +141,7 @@ const MultiLevelDropdown = ({ categories }) => {
     clearTimeout(timerRef.current);
     setShowMenu(true);
   };
+
   return (
     <DropdownContainer
       className="dropdownContainer"
@@ -163,7 +166,12 @@ const MultiLevelDropdown = ({ categories }) => {
 
             <SubMenuContent>
               {category.subCategories.map((subCategory) => (
-                <MenuItem key={subCategory}>{subCategory}</MenuItem>
+                <MenuItem
+                  onClick={() => handleButtonClick(category.name, subCategory)}
+                  key={subCategory}
+                >
+                  {subCategory}
+                </MenuItem>
               ))}
             </SubMenuContent>
           </SubMenu>

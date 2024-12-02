@@ -21,7 +21,7 @@ const NavBar = () => {
   const [isNavbar2Visible, setIsNavbar2Visible] = useState(false);
 
   const handleScroll = () => {
-    if (window.scrollY > 100 && window.innerWidth > 950) {
+    if (window.scrollY > 122) {
       setIsSticky(true);
     } else {
       setIsSticky(false);
@@ -34,20 +34,6 @@ const NavBar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-  useEffect(() => {
-    const updateBodyPadding = () => {
-      if (navRef.current) {
-        const navHeight = navRef.current.clientHeight;
-        document.body.style.paddingTop =
-          window.innerWidth > 950 ? `${navHeight + 100}px` : `${navHeight}px`;
-      }
-    };
-
-    updateBodyPadding();
-    window.addEventListener("resize", updateBodyPadding);
-    return () => window.removeEventListener("resize", updateBodyPadding);
-  }, [navRef]);
 
   const toggleNavbar2 = () => {
     console.log(isNavbar2Visible);
@@ -67,7 +53,7 @@ const NavBar = () => {
 
               <NavImage
                 banner={true}
-                src="https://mikrofin.com/images/2022/12/22/mobishop.png"
+                src="https://galeriagalena.pl/static/thumbnail/brand/big/505.png"
                 alt="Your Image"
               />
             </StyledLink>

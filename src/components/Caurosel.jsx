@@ -1,6 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
 import Slider from "react-slick";
-import { useNavigate } from "react-router-dom"; // Import useHistory from react-router-dom
 import "../styles.css"; // Import your stylesheet
 import { slideData } from "../static/helper";
 import {
@@ -16,8 +15,11 @@ import {
   NextPrevButtonContainer,
   CarousalWrapper,
 } from "./styles/CauroselStyles";
+import useHandleNavigation from "../hooks/useHandleNavigation";
 
 function HomeCarousal() {
+  const handleButtonClick = useHandleNavigation();
+
   const [showCarousalButtons, setShowCarousalButtons] = useState(false);
   const [activeSlide, setActiveSlide] = useState(0);
   const [hoverState, setHoverState] = useState({ next: false, prev: false });
@@ -27,7 +29,6 @@ function HomeCarousal() {
   const hideTimeoutRef = useRef(null);
   const hoverTimeoutRef = useRef({ next: null, prev: null });
   const dataTimeoutRef = useRef(null); // Ref to keep track of the timeout
-  const navigate = useNavigate(); // Initialize useHistory
 
   const next = () => {
     sliderRef.current.slickNext();
@@ -52,13 +53,6 @@ function HomeCarousal() {
       setShowData(false); // Hide data immediately on slide change
     },
   };
-
-  const handleButtonClick = (title) => {
-    // Navigate to a new page using history.push with the title in the URL
-    const formattedTitle = title.replace(/\s+/g, "-").toLowerCase(); // Replace spaces with dashes and convert to lowercase
-    navigate(`/shop/${formattedTitle}`);
-  };
-
   const renderSlides = () => {
     return slideData.map((slide, index) => (
       <div key={index}>
@@ -67,15 +61,14 @@ function HomeCarousal() {
             activeSlide === index && ( // Conditionally render data
               <>
                 <ImageContainer>
-                  <Image
-                    src={slide.image}
-                    className={activeSlide === index ? "active" : ""}
-                  />
+                  <Image src={slide.image} className="active" />
                 </ImageContainer>
                 <CarousalDataContainer className="active">
                   <Description>{slide.description}</Description>
                   <Title>{slide.title}</Title>
-                  <StyledButton onClick={() => handleButtonClick(slide.title)}>
+                  <StyledButton
+                    onClick={() => handleButtonClick(slide.brand, slide.title)}
+                  >
                     {slide.link}
                   </StyledButton>
                 </CarousalDataContainer>
