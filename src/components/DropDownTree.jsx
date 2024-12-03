@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import useHandleNavigation from "../hooks/useHandleNavigation";
 
@@ -142,6 +142,15 @@ const MultiLevelDropdown = ({ categories }) => {
     setShowMenu(true);
   };
 
+  useEffect(() => {
+    // Cleanup function to clear the timeout when the component unmounts
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+    };
+  }, []);
+
   return (
     <DropdownContainer
       className="dropdownContainer"
@@ -158,7 +167,12 @@ const MultiLevelDropdown = ({ categories }) => {
       >
         {categories.map((category) => (
           <SubMenu className="subMenu" key={category.name}>
-            <SubMenuTitle>
+            <SubMenuTitle
+              onClick={() => {
+                handleButtonClick(category.name, "products");
+                setShowMenu(false);
+              }}
+            >
               {category.name}
 
               <Arrow>›</Arrow>
@@ -167,7 +181,10 @@ const MultiLevelDropdown = ({ categories }) => {
             <SubMenuContent>
               {category.subCategories.map((subCategory) => (
                 <MenuItem
-                  onClick={() => handleButtonClick(category.name, subCategory)}
+                  onClick={() => {
+                    handleButtonClick(category.name, subCategory);
+                    setShowMenu(false);
+                  }}
                   key={subCategory}
                 >
                   {subCategory}

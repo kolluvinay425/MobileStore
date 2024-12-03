@@ -13,32 +13,24 @@ import {
   Bars,
 } from "./styles/NavBarStyles";
 import { productCategories } from "../static/helper";
+import useSticky from "../hooks/useSticky";
+import useHandleNavigation from "../hooks/useHandleNavigation";
 
 const NavBar = () => {
   const navRef = useRef(null);
-
-  const [isSticky, setIsSticky] = useState(false);
+  const [query, setQuery] = useState("");
   const [isNavbar2Visible, setIsNavbar2Visible] = useState(false);
-
-  const handleScroll = () => {
-    if (window.scrollY > 122) {
-      setIsSticky(true);
-    } else {
-      setIsSticky(false);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  const handleButtonClick = useHandleNavigation();
+  const isSticky = useSticky();
 
   const toggleNavbar2 = () => {
     console.log(isNavbar2Visible);
     setIsNavbar2Visible(!isNavbar2Visible);
   };
+
+  const handleInputChange = (e) => {
+    setQuery(e.target.value);
+  }; // Correctly access the value of the input field };
   return (
     <>
       <Navbar1 className="navbar1" isSticky={isSticky}>
@@ -58,8 +50,16 @@ const NavBar = () => {
               />
             </StyledLink>
             <div className="search-container">
-              <SearchBar placeholder="Search for Products" />
-              <SearchBarButton>Q</SearchBarButton>
+              <SearchBar
+                onChange={handleInputChange}
+                value={query}
+                placeholder="Search for Products"
+              />
+              <SearchBarButton
+                onClick={() => handleButtonClick("products", query)}
+              >
+                Q
+              </SearchBarButton>
             </div>
 
             <div className="navIconWrapper">

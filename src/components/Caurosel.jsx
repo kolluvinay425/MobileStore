@@ -16,6 +16,7 @@ import {
   CarousalWrapper,
 } from "./styles/CauroselStyles";
 import useHandleNavigation from "../hooks/useHandleNavigation";
+import useSticky from "../hooks/useSticky";
 
 function HomeCarousal() {
   const handleButtonClick = useHandleNavigation();
@@ -29,6 +30,8 @@ function HomeCarousal() {
   const hideTimeoutRef = useRef(null);
   const hoverTimeoutRef = useRef({ next: null, prev: null });
   const dataTimeoutRef = useRef(null); // Ref to keep track of the timeout
+
+  const isSticky = useSticky();
 
   const next = () => {
     sliderRef.current.slickNext();
@@ -53,6 +56,7 @@ function HomeCarousal() {
       setShowData(false); // Hide data immediately on slide change
     },
   };
+
   const renderSlides = () => {
     return slideData.map((slide, index) => (
       <div key={index}>
@@ -121,6 +125,7 @@ function HomeCarousal() {
       className="slider-container"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      isSticky={isSticky}
     >
       <Slider ref={sliderRef} {...settings}>
         {renderSlides()}

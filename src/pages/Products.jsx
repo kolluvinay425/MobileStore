@@ -89,13 +89,15 @@ const Products = () => {
   const [loading, setLoading] = useState(false); // New loading state
   const { model, brand } = useParams();
   const checkModel = model === "products" ? "" : model;
-
+  const checkBrand = brand === "products" ? "" : brand;
+  console.log("first------>", { model, brand });
   useEffect(() => {
+    let isMounted = true; // Track whether the component is mounted
     const fetchProducts = async () => {
       setLoading(true);
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_ROOT_API_URI}/mobiles?model=${checkModel}&brand=${brand}`
+          `${process.env.REACT_APP_ROOT_API_URI}/mobiles?model=${checkModel}&brand=${checkBrand}`
         );
         const data = await response.json();
         const mobiles = data.products.data;
@@ -108,6 +110,9 @@ const Products = () => {
     };
 
     fetchProducts();
+    return () => {
+      isMounted = false; // Cleanup flag to prevent state updates on unmounted component
+    };
   }, [model, brand]);
 
   // Dummy data for demonstration purposes
@@ -144,7 +149,7 @@ const Products = () => {
             <LoadingMessage>Loading...</LoadingMessage>
           ) : products.length > 0 ? (
             products.map((product) => (
-              <ProductCard key={product.id}>
+              <ProductCard key={product._id}>
                 <ProductImage src={product.image} alt={product.name} />
                 <ProductName>
                   {product.brand}-{product.model} - {product.color}
