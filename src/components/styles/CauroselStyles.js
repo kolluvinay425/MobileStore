@@ -31,10 +31,13 @@ export const CarousalWrapper = styled.div`
   background-position: center; // Centers the background image
   background-repeat: no-repeat; // Prevents repeating the background image
   width: 100%; // Makes sure the container spans the full width
+  position: ${(props) => (props.isSticky ? "sticky" : "relative")};
+  /* width: 100%; */
 
+  top: ${(props) => (props.isSticky ? "80px" : "0px")};
   @media (max-width: 890px) {
-    /* For medium screens and smaller */
-    /* Add more rules if you have more than 2 children */
+    top: 0%;
+    position: relative;
   }
 `;
 
