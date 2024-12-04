@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { FaUser, FaUserPlus, FaCartPlus, FaBars } from "react-icons/fa";
 import MultiLevelDropdown from "./DropDownTree";
 import {

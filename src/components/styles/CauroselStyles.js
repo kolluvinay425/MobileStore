@@ -23,6 +23,23 @@ const slideInFromBottom = keyframes`
   }
 `;
 
+// export const CarousalWrapper = styled.div`
+//   padding-top: 20px;
+//   background-image: url("https://t3.ftcdn.net/jpg/03/16/91/28/360_F_316912806_RCeHVmUx5LuBMi7MKYTY5arkE4I0DcpU.jpg");
+//   min-height: 52vh;
+//   background-size: cover; // Ensures the background image covers the entire container
+//   background-position: center; // Centers the background image
+//   background-repeat: no-repeat; // Prevents repeating the background image
+//   width: 100%; // Makes sure the container spans the full width
+//   position: ${(props) => (props.isSticky ? "sticky" : "relative")};
+//   /* width: 100%; */
+
+//   top: ${(props) => (props.isSticky ? "80px" : "0px")};
+//   @media (max-width: 890px) {
+//     top: 0%;
+//     position: relative;
+//   }
+// `;
 export const CarousalWrapper = styled.div`
   padding-top: 20px;
   background-image: url("https://t3.ftcdn.net/jpg/03/16/91/28/360_F_316912806_RCeHVmUx5LuBMi7MKYTY5arkE4I0DcpU.jpg");
@@ -32,15 +49,22 @@ export const CarousalWrapper = styled.div`
   background-repeat: no-repeat; // Prevents repeating the background image
   width: 100%; // Makes sure the container spans the full width
   position: ${(props) => (props.isSticky ? "sticky" : "relative")};
-  /* width: 100%; */
-
   top: ${(props) => (props.isSticky ? "80px" : "0px")};
+  /* background-position-y: ${(props) =>
+    props.offset * 0.5}px; // Parallax effect */
+  /* background-position-y: ${(props) =>
+    `calc(100% - ${props.offset * 0.2}px)`}; // Parallax effect */
+
   @media (max-width: 890px) {
     top: 0%;
     position: relative;
   }
 `;
 
+export const CarousalContent = styled.div`
+  background-position-y: ${(props) =>
+    `calc(100% - ${props.offset * 0.5}px)`}; // Parallax effect
+`;
 const CarousalContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -64,13 +88,16 @@ const CarousalContainer = styled.div`
 `;
 
 const Image = styled.img`
+  transform: translateY(${(props) => props.offset * 0.3}px);
   max-width: 100%;
   height: 50vh;
   opacity: 0;
   transform: translateX(-100%);
+
   &.active {
     animation: ${slideInFromLeft} 1s forwards;
   }
+
   @media (max-width: 890px) {
     /* For medium screens and smaller */
     height: 40vh; /* Adjust the height as needed */
@@ -88,6 +115,7 @@ const Image = styled.img`
 `;
 
 const ButtonContainer = styled.div`
+  transform: translateY(${(props) => props.offset * 0.3}px);
   position: absolute;
   top: 50%;
   width: calc(100% - 80px);
@@ -110,6 +138,7 @@ const ButtonContainer = styled.div`
 `;
 
 const NextPrevButtonContainer = styled.div`
+  transform: translateY(${(props) => props.offset * 0.3}px);
   display: ${(props) => (props.isVisible ? "block" : "none")};
 
   @media (max-width: 890px) {
@@ -126,6 +155,7 @@ const NextPrevButtonContainer = styled.div`
 `;
 
 const Button = styled.button`
+  transform: translateY(${(props) => props.offset * 0.3}px);
   background-color: rgb(255, 255, 255);
   border-radius: 40px;
   color: #302d2d;
@@ -155,6 +185,7 @@ const ImageContainer = styled.div`
 `;
 
 const CarousalDataContainer = styled.div`
+  transform: translateY(${(props) => props.offset * 0.3}px);
   max-width: 70%;
   &.active h3,
   &.active h1,
@@ -223,6 +254,7 @@ const CarousalDataContainer = styled.div`
 `;
 
 const Description = styled.h3`
+  transform: translateY(${(props) => props.offset * 0.3}px);
   margin: 0;
   color: white;
   font-size: 1.5rem;
@@ -239,6 +271,7 @@ const Description = styled.h3`
 `;
 
 const Title = styled.h1`
+  transform: translateY(${(props) => props.offset * 0.3}px);
   font-weight: bold;
   color: white;
   font-size: 50px;
@@ -264,6 +297,7 @@ const Title = styled.h1`
 `;
 
 const StyledButton = styled.button`
+  transform: translateY(${(props) => props.offset * 0.3}px);
   margin-top: 100px;
   padding: 15px;
   background-color: whitesmoke;

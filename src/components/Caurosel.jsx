@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import Slider from "react-slick";
 import "../styles.css"; // Import your stylesheet
 import { slideData } from "../static/helper";
@@ -14,13 +14,15 @@ import {
   StyledButton,
   NextPrevButtonContainer,
   CarousalWrapper,
+  CarousalContent,
 } from "./styles/CauroselStyles";
 import useHandleNavigation from "../hooks/useHandleNavigation";
 import useSticky from "../hooks/useSticky";
+import useParallaxEffect from "../hooks/useParallax";
 
 function HomeCarousal() {
   const handleButtonClick = useHandleNavigation();
-
+  const offset = useParallaxEffect();
   const [showCarousalButtons, setShowCarousalButtons] = useState(false);
   const [activeSlide, setActiveSlide] = useState(0);
   const [hoverState, setHoverState] = useState({ next: false, prev: false });
@@ -65,12 +67,13 @@ function HomeCarousal() {
             activeSlide === index && ( // Conditionally render data
               <>
                 <ImageContainer>
-                  <Image src={slide.image} className="active" />
+                  <Image offset={offset} src={slide.image} className="active" />
                 </ImageContainer>
                 <CarousalDataContainer className="active">
-                  <Description>{slide.description}</Description>
-                  <Title>{slide.title}</Title>
+                  <Description offset={offset}>{slide.description}</Description>
+                  <Title offset={offset}>{slide.title}</Title>
                   <StyledButton
+                    offset={offset}
                     onClick={() => handleButtonClick(slide.brand, slide.title)}
                   >
                     {slide.link}
@@ -126,6 +129,7 @@ function HomeCarousal() {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       isSticky={isSticky}
+      offset={offset}
     >
       <Slider ref={sliderRef} {...settings}>
         {renderSlides()}
