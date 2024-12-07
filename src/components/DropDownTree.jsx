@@ -168,6 +168,7 @@ const MultiLevelDropdown = ({ categories }) => {
         {categories.map((category) => (
           <SubMenu className="subMenu" key={category.name}>
             <SubMenuTitle
+              id={category.name}
               onClick={() => {
                 handleButtonClick(category.name, "products");
                 setShowMenu(false);
@@ -181,6 +182,7 @@ const MultiLevelDropdown = ({ categories }) => {
             <SubMenuContent>
               {category.subCategories.map((subCategory) => (
                 <MenuItem
+                  id={subCategory}
                   onClick={() => {
                     handleButtonClick(category.name, subCategory);
                     setShowMenu(false);

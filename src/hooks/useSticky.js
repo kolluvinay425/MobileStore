@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const useSticky = (threshold = 122) => {
+const useSticky = (threshold = 125) => {
   const [isSticky, setIsSticky] = useState(false);
 
   useEffect(() => {

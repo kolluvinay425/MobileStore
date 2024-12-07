@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 import Slider from "react-slick";
 import "../styles.css"; // Import your stylesheet
 import { slideData } from "../static/helper";
@@ -14,7 +14,6 @@ import {
   StyledButton,
   NextPrevButtonContainer,
   CarousalWrapper,
-  CarousalContent,
 } from "./styles/CauroselStyles";
 import useHandleNavigation from "../hooks/useHandleNavigation";
 import useSticky from "../hooks/useSticky";
@@ -22,29 +21,28 @@ import useParallaxEffect from "../hooks/useParallax";
 
 function HomeCarousal() {
   const handleButtonClick = useHandleNavigation();
-  const offset = useParallaxEffect();
+  const offset = useParallaxEffect(125); // Adjust threshold if needed
   const [showCarousalButtons, setShowCarousalButtons] = useState(false);
   const [activeSlide, setActiveSlide] = useState(0);
   const [hoverState, setHoverState] = useState({ next: false, prev: false });
-  const [showData, setShowData] = useState(true); // New state to control data display
+  const [showData, setShowData] = useState(true);
 
   const sliderRef = useRef(null);
   const hideTimeoutRef = useRef(null);
   const hoverTimeoutRef = useRef({ next: null, prev: null });
-  const dataTimeoutRef = useRef(null); // Ref to keep track of the timeout
+  const dataTimeoutRef = useRef(null);
 
   const isSticky = useSticky();
 
-  const next = () => {
+  const next = useCallback(() => {
     sliderRef.current.slickNext();
-  };
+  }, []);
 
-  const previous = () => {
+  const previous = useCallback(() => {
     sliderRef.current.slickPrev();
-  };
+  }, []);
 
   const settings = {
-    // dots: true,
     fade: true,
     infinite: true,
     speed: 500,
@@ -59,7 +57,7 @@ function HomeCarousal() {
     },
   };
 
-  const renderSlides = () => {
+  const renderSlides = useCallback(() => {
     return slideData.map((slide, index) => (
       <div key={index}>
         <CarousalContainer>
@@ -67,7 +65,7 @@ function HomeCarousal() {
             activeSlide === index && ( // Conditionally render data
               <>
                 <ImageContainer>
-                  <Image offset={offset} src={slide.image} className="active" />
+                  <Image offset={offset} img={slide.image} className="active" />
                 </ImageContainer>
                 <CarousalDataContainer className="active">
                   <Description offset={offset}>{slide.description}</Description>
@@ -84,7 +82,7 @@ function HomeCarousal() {
         </CarousalContainer>
       </div>
     ));
-  };
+  }, [activeSlide, handleButtonClick, offset, showData]);
 
   const nextSlideTitle = slideData[(activeSlide + 1) % slideData.length].title;
   const prevSlideTitle =
@@ -109,13 +107,13 @@ function HomeCarousal() {
     return () => {
       clearTimeout(dataTimeoutRef.current); // Clear timeout on cleanup
     };
-  }, [activeSlide]); // Effect runs on activeSlide change
+  }, [activeSlide]);
 
   const handleButtonMouseEnter = (buttonType) => {
     clearTimeout(hoverTimeoutRef.current[buttonType]);
     hoverTimeoutRef.current[buttonType] = setTimeout(() => {
       setHoverState((prevState) => ({ ...prevState, [buttonType]: true }));
-    }, 200); // Delay for 0.15 second before showing the title
+    }, 200);
   };
 
   const handleButtonMouseLeave = (buttonType) => {
@@ -137,6 +135,7 @@ function HomeCarousal() {
       <NextPrevButtonContainer isVisible={showCarousalButtons}>
         <ButtonContainer>
           <Button
+            offset={offset}
             onClick={previous}
             onMouseEnter={() => handleButtonMouseEnter("prev")}
             onMouseLeave={() => handleButtonMouseLeave("prev")}
@@ -144,6 +143,7 @@ function HomeCarousal() {
             {hoverState.prev ? prevSlideTitle : "Previous"}
           </Button>
           <Button
+            offset={offset}
             onClick={next}
             onMouseEnter={() => handleButtonMouseEnter("next")}
             onMouseLeave={() => handleButtonMouseLeave("next")}

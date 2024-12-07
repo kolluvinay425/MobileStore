@@ -10,7 +10,6 @@ const ProductImage = styled.img`
   height: 140px; /* Set a fixed height for the image */
   object-fit: cover; /* Ensure the image covers the specified area */
   margin-bottom: 10px;
-  cursor: pointer;
 `;
 
 const ProductName = styled.h4`
@@ -20,11 +19,9 @@ const ProductName = styled.h4`
 const MainContent = styled.div`
   flex: 1;
   padding: 20px;
-  /* width: 70%; */
-  /* margin: auto; */
+  transition: top 0.5s ease-out;
 
-  position: relative;
-  /* Required for z-index to work */
+  position: relative; /* Required for z-index to work */
   background-color: white; /* Optional: to make sure content is visible */
 
   @media (max-width: 950px) {
