@@ -61,6 +61,7 @@ const ProductImage = styled.img`
   height: 140px;
   object-fit: cover;
   margin-bottom: 10px;
+  cursor: pointer;
 `;
 
 const ProductName = styled.h4`
@@ -113,7 +114,7 @@ const Products = () => {
     return () => {
       isMounted = false; // Cleanup flag to prevent state updates on unmounted component
     };
-  }, [model, brand]);
+  }, [checkModel, checkBrand]);
 
   // Dummy data for demonstration purposes
   const filters = {

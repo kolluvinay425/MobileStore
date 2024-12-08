@@ -19,8 +19,7 @@ const ProductName = styled.h4`
 const MainContent = styled.div`
   flex: 1;
   padding: 20px;
-  /* width: 70%; */
-  /* margin: auto; */
+  transition: top 0.5s ease-out;
 
   position: relative; /* Required for z-index to work */
   background-color: white; /* Optional: to make sure content is visible */

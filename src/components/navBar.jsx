@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { FaUser, FaUserPlus, FaCartPlus, FaBars } from "react-icons/fa";
 import MultiLevelDropdown from "./DropDownTree";
 import {
@@ -15,12 +15,12 @@ import {
 import { productCategories } from "../static/helper";
 import useSticky from "../hooks/useSticky";
 import useHandleNavigation from "../hooks/useHandleNavigation";
-
+import { useEffect } from "react";
 const NavBar = () => {
-  const navRef = useRef(null);
   const [query, setQuery] = useState("");
   const [isNavbar2Visible, setIsNavbar2Visible] = useState(false);
   const handleButtonClick = useHandleNavigation();
+
   const isSticky = useSticky();
 
   const toggleNavbar2 = () => {
@@ -33,7 +33,7 @@ const NavBar = () => {
   }; // Correctly access the value of the input field };
   return (
     <>
-      <Navbar1 className="navbar1" isSticky={isSticky}>
+      <Navbar1 className="navbar1">
         <Nav className="nav1" center={true}>
           <NavList navOne={true}>
             <StyledLink to="/">
@@ -79,7 +79,7 @@ const NavBar = () => {
       <Navbar2
         class="navbar2"
         bars={isNavbar2Visible}
-        ref={navRef}
+        // height={height}
         isSticky={isSticky}
       >
         <Nav className="Nav2" bars={isNavbar2Visible}>

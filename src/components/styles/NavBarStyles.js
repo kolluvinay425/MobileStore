@@ -160,8 +160,10 @@ const SearchBarButton = styled.button`
 `;
 
 const Navbar1 = styled.div`
+  position: ${(props) => (props.isSticky ? "sticky" : "relative")};
+  /* transition: top 0.1s ease-out; */
   color: white;
-  /* width: 100%; */
+  width: 100%;
   @media (max-width: 950px) {
     position: relative;
   }
@@ -171,13 +173,12 @@ const Navbar1 = styled.div`
 `;
 
 const Navbar2 = styled.div`
+  transition: top 0.01s ease-out;
   color: white;
   position: ${(props) => (props.isSticky ? "sticky" : "relative")};
-  /* width: 100%; */
-  top: ${(props) => (props.isSticky ? "130px" : "0px")};
+  width: 100%;
+  top: ${(props) => (props.isSticky ? `${0}px` : "none")};
   z-index: 2;
-  transform: ${(props) =>
-    props.isSticky ? "translateY(-130px)" : "translateY(0)"};
 
   @media (max-width: 950px) {
     display: ${(props) => (props.bars ? "flex" : "none")};

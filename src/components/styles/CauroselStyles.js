@@ -23,28 +23,10 @@ const slideInFromBottom = keyframes`
   }
 `;
 
-export const CarousalWrapper = styled.div`
-  padding-top: 20px;
-  background-image: url("https://t3.ftcdn.net/jpg/03/16/91/28/360_F_316912806_RCeHVmUx5LuBMi7MKYTY5arkE4I0DcpU.jpg");
-  min-height: 52vh;
-  background-size: cover; // Ensures the background image covers the entire container
-  background-position: center; // Centers the background image
-  background-repeat: no-repeat; // Prevents repeating the background image
-  width: 100%; // Makes sure the container spans the full width
-  position: ${(props) => (props.isSticky ? "sticky" : "relative")};
-  /* width: 100%; */
-
-  top: ${(props) => (props.isSticky ? "80px" : "0px")};
-  @media (max-width: 890px) {
-    top: 0%;
-    position: relative;
-  }
-`;
-
 const CarousalContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  /* padding: 60px; */
+  padding-top: 3%;
   gap: 50px;
   justify-content: center;
   align-items: center;
@@ -63,27 +45,64 @@ const CarousalContainer = styled.div`
   }
 `;
 
-const Image = styled.img`
+const ImageContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 40vh; /* Set a fixed height for the container */
+  display: flex;
+  justify-content: flex-end;
+  overflow: hidden; /* Ensures content inside does not overflow */
+`;
+
+const Image = styled.div`
+  background-image: ${(props) => `url(${props.img})`};
   max-width: 100%;
-  height: 50vh;
+  background-repeat: no-repeat; /* Prevents repeating the background image */
+  background-position: center; /* Centers the background image */
+  background-size: cover; /* Ensures the background image covers the entire container */
+  background-size: contain;
+  height: 40vh;
+  width: 40vh; /* Ensures the width is the same as height */
   opacity: 0;
-  transform: translateX(-100%);
+  background-position-y: ${(props) =>
+    `calc(100% - ${props.offset * 0.05}px)`}; // Parallax effect
+
   &.active {
     animation: ${slideInFromLeft} 1s forwards;
+    opacity: 1; /* Ensure the image becomes visible */
   }
+
   @media (max-width: 890px) {
-    /* For medium screens and smaller */
     height: 40vh; /* Adjust the height as needed */
+    width: 40vh; /* Adjust the width to maintain aspect ratio */
   }
 
   @media (max-width: 600px) {
-    /* For small screens and smaller */
     height: 30vh; /* Adjust the height as needed */
+    width: 30vh; /* Adjust the width to maintain aspect ratio */
   }
 
   @media (max-width: 400px) {
-    /* For very small screens */
     height: 20vh; /* Adjust the height as needed */
+    width: 20vh; /* Adjust the width to maintain aspect ratio */
+  }
+`;
+
+const CarousalWrapper = styled.div`
+  background-image: url("https://t3.ftcdn.net/jpg/03/16/91/28/360_F_316912806_RCeHVmUx5LuBMi7MKYTY5arkE4I0DcpU.jpg");
+  min-height: 50vh;
+  background-size: cover; // Ensures the background image covers the entire container
+  background-position: center; // Centers the background image
+  background-repeat: no-repeat; // Prevents repeating the background image
+  width: 100%; // Makes sure the container spans the full width
+  position: ${(props) => (props.isSticky ? "sticky" : "relative")};
+  top: ${(props) => (props.isSticky ? "80px" : "0px")};
+  background-position-y: ${(props) =>
+    `calc(100% - ${props.offset * 0.1}px)`}; // Parallax effect
+
+  @media (max-width: 890px) {
+    top: 0%;
+    position: relative;
   }
 `;
 
@@ -126,6 +145,9 @@ const NextPrevButtonContainer = styled.div`
 `;
 
 const Button = styled.button`
+  top: ${(props) =>
+    -props.offset * 0.1}px; /* Adjust top value for parallax effect */
+  transition: top 0.1s ease-out;
   background-color: rgb(255, 255, 255);
   border-radius: 40px;
   color: #302d2d;
@@ -145,16 +167,9 @@ const Button = styled.button`
     width: 15%;
   }
 `;
-const ImageContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  @media (max-width: 890px) {
-    /* For medium screens and smaller */
-    justify-content: center;
-  }
-`;
 
 const CarousalDataContainer = styled.div`
+  /* transform: translateY(${(props) => -props.offset * 0.05}px); */
   max-width: 70%;
   &.active h3,
   &.active h1,
@@ -223,6 +238,10 @@ const CarousalDataContainer = styled.div`
 `;
 
 const Description = styled.h3`
+  position: relative;
+  top: ${(props) =>
+    -props.offset * 0.05}px; /* Adjust top value for parallax effect */
+  transition: top 0.1s ease-out;
   margin: 0;
   color: white;
   font-size: 1.5rem;
@@ -239,6 +258,10 @@ const Description = styled.h3`
 `;
 
 const Title = styled.h1`
+  position: relative;
+  top: ${(props) =>
+    -props.offset * 0.05}px; /* Adjust top value for parallax effect */
+  transition: top 0.1s ease-out;
   font-weight: bold;
   color: white;
   font-size: 50px;
@@ -264,6 +287,10 @@ const Title = styled.h1`
 `;
 
 const StyledButton = styled.button`
+  position: relative;
+  top: ${(props) =>
+    -props.offset * 0.05}px; /* Adjust top value for parallax effect */
+  transition: top 0.1s ease-out;
   margin-top: 100px;
   padding: 15px;
   background-color: whitesmoke;
@@ -316,4 +343,5 @@ export {
   Title,
   StyledButton,
   NextPrevButtonContainer,
+  CarousalWrapper,
 };
