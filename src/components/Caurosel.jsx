@@ -65,13 +65,12 @@ function HomeCarousal() {
             activeSlide === index && ( // Conditionally render data
               <>
                 <ImageContainer>
-                  <Image offset={offset} img={slide.image} className="active" />
+                  <Image img={slide.image} className="active" />
                 </ImageContainer>
                 <CarousalDataContainer className="active">
-                  <Description offset={offset}>{slide.description}</Description>
-                  <Title offset={offset}>{slide.title}</Title>
+                  <Description>{slide.description}</Description>
+                  <Title>{slide.title}</Title>
                   <StyledButton
-                    offset={offset}
                     onClick={() => handleButtonClick(slide.brand, slide.title)}
                   >
                     {slide.link}
@@ -135,7 +134,6 @@ function HomeCarousal() {
       <NextPrevButtonContainer isVisible={showCarousalButtons}>
         <ButtonContainer>
           <Button
-            offset={offset}
             onClick={previous}
             onMouseEnter={() => handleButtonMouseEnter("prev")}
             onMouseLeave={() => handleButtonMouseLeave("prev")}
@@ -143,7 +141,6 @@ function HomeCarousal() {
             {hoverState.prev ? prevSlideTitle : "Previous"}
           </Button>
           <Button
-            offset={offset}
             onClick={next}
             onMouseEnter={() => handleButtonMouseEnter("next")}
             onMouseLeave={() => handleButtonMouseLeave("next")}
